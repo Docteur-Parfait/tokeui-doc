@@ -177,31 +177,25 @@ The theme is shown below in both **light** and **dark** mode. Screenshots are in
 
 | Light | Dark |
 |-------|------|
-| ![Shop Dashboard (light)](screenshots/1.png) | ![Shop Dashboard (dark)](screenshots/1-dark.png) |
+| ![Shop Dashboard (light)](screenshots/s1-l.png) | ![Shop Dashboard (dark)](screenshots/s1-d.png) |
 
 ### 2 — HR Dashboard
 
 | Light | Dark |
 |-------|------|
-| ![HR Dashboard (light)](screenshots/2.png) | ![HR Dashboard (dark)](screenshots/2-dark.png) |
+| ![HR Dashboard (light)](screenshots/s2-l.png) | ![HR Dashboard (dark)](screenshots/s2-d.png) |
 
 ### 3 — Stat UI View (stat card showcase)
 
 | Light | Dark |
 |-------|------|
-| ![Stat UI View (light)](screenshots/3.png) | ![Stat UI View (dark)](screenshots/3-dark.png) |
+| ![Stat UI View (light)](screenshots/s3-l.png) | ![Stat UI View (dark)](screenshots/s3-d.png) |
 
 ### 4 — Stat cards grid (all theme classes)
 
 | Light | Dark |
 |-------|------|
-| ![Stat cards (light)](screenshots/4.png) | ![Stat cards (dark)](screenshots/4-dark.png) |
-
-### 5 — Notifications and stat cards
-
-| Light | Dark |
-|-------|------|
-| ![Notifications (light)](screenshots/5.png) | ![Notifications (dark)](screenshots/5-dark.png) |
+| ![Stat cards (light)](screenshots/s4-l.png) | ![Stat cards (dark)](screenshots/s4-d.png) |
 
 ---
 
