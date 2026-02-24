@@ -4,8 +4,8 @@ A professional light and dark theme for Filament PHP.
 
 ![TokeUI – Filament Theme](screenshots/cover.png)
 
-| Dashboard Light | Dashboard Dark |
-|-----------------|----------------|
+| Dashboard Light                                 | Dashboard Dark                                 |
+| ----------------------------------------------- | ---------------------------------------------- |
 | ![Shop Dashboard (light)](screenshots/s1-l.png) | ![Shop Dashboard (dark)](screenshots/s1-d.png) |
 
 ## Table of contents
@@ -41,7 +41,7 @@ A professional light and dark theme for Filament PHP.
 
 ### Activating Your License on AnyStack
 
-TokeUI Theme uses AnyStack to handle payment, licensing, and distribution. [You can buy it here](https://checkout.anystack.sh/tokeui-theme?via=arf178).
+TokeUI Theme uses AnyStack to handle payment, licensing, and distribution. [You can buy it here](https://checkout.anystack.sh/tokeui-filament-theme).
 
 During the purchasing process, AnyStack will provide you with a license key. Once your license key is activated, you can proceed with the Composer installation described below.
 
@@ -51,12 +51,12 @@ Add the TokeUI Theme package to the `repositories` section of your `composer.jso
 
 ```json
 {
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://tokeui-filament-theme.composer.sh"
-        }
-    ]
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://tokeui-filament-theme.composer.sh"
+    }
+  ]
 }
 ```
 
@@ -96,15 +96,18 @@ Configure Vite in your **vite.config.js**:
 **a) Add the alias** — The theme imports Filament's base CSS. Add to `resolve.alias` (and `import path from 'path'` at the top if needed):
 
 ```js
-import path from 'path';
+import path from "path";
 
 export default defineConfig({
-    resolve: {
-        alias: {
-            'filament-base-theme': path.resolve(__dirname, 'vendor/filament/filament/resources/css/theme.css'),
-        },
+  resolve: {
+    alias: {
+      "filament-base-theme": path.resolve(
+        __dirname,
+        "vendor/filament/filament/resources/css/theme.css",
+      ),
     },
-    // ...
+  },
+  // ...
 });
 ```
 
@@ -161,48 +164,48 @@ Use a single class per card (e.g. `stat-card-rose`, `stat-card-blue-pro`, or `st
 
 ### Colored variants (gradient value, colored label)
 
-| Class | Appearance |
-|-------|------------|
-| `stat-card-violet` | Pastel violet background, violet bar and value |
-| `stat-card-emerald` | Green (success) |
-| `stat-card-rose` | Rose / danger |
-| `stat-card-amber` | Amber / warning |
-| `stat-card-sky` | Sky blue / info |
-| `stat-card-fuchsia` | Fuchsia |
-| `stat-card-teal` | Teal |
-| `stat-card-orange` | Orange |
-| `stat-card-indigo` | Indigo |
-| `stat-card-slate` | Neutral grey/slate |
+| Class               | Appearance                                     |
+| ------------------- | ---------------------------------------------- |
+| `stat-card-violet`  | Pastel violet background, violet bar and value |
+| `stat-card-emerald` | Green (success)                                |
+| `stat-card-rose`    | Rose / danger                                  |
+| `stat-card-amber`   | Amber / warning                                |
+| `stat-card-sky`     | Sky blue / info                                |
+| `stat-card-fuchsia` | Fuchsia                                        |
+| `stat-card-teal`    | Teal                                           |
+| `stat-card-orange`  | Orange                                         |
+| `stat-card-indigo`  | Indigo                                         |
+| `stat-card-slate`   | Neutral grey/slate                             |
 
 ### "Pro" variants (pastel background, neutral value/label, accent on bar and description)
 
-| Class | Appearance |
-|-------|------------|
-| `stat-card-blue-pro` | Pastel blue, neutral text, blue accent |
-| `stat-card-green-pro` | Pastel green |
-| `stat-card-rose-pro` | Pastel rose |
-| `stat-card-amber-pro` | Pastel amber |
-| `stat-card-violet-pro` | Pastel violet |
-| `stat-card-sky-pro` | Pastel sky blue |
+| Class                  | Appearance                             |
+| ---------------------- | -------------------------------------- |
+| `stat-card-blue-pro`   | Pastel blue, neutral text, blue accent |
+| `stat-card-green-pro`  | Pastel green                           |
+| `stat-card-rose-pro`   | Pastel rose                            |
+| `stat-card-amber-pro`  | Pastel amber                           |
+| `stat-card-violet-pro` | Pastel violet                          |
+| `stat-card-sky-pro`    | Pastel sky blue                        |
 
 ### "Bar" variants (accent bar at bottom, white text in bar)
 
-| Class | Appearance |
-|-------|------------|
-| `stat-card-bar-orange` | Orange value, orange bottom bar, white text in bar |
-| `stat-card-bar-rose` | Rose |
-| `stat-card-bar-emerald` | Emerald |
-| `stat-card-bar-blue` | Blue |
+| Class                   | Appearance                                         |
+| ----------------------- | -------------------------------------------------- |
+| `stat-card-bar-orange`  | Orange value, orange bottom bar, white text in bar |
+| `stat-card-bar-rose`    | Rose                                               |
+| `stat-card-bar-emerald` | Emerald                                            |
+| `stat-card-bar-blue`    | Blue                                               |
 
 ### "Pro plain" variants (solid background, all text white)
 
-| Class | Appearance |
-|-------|------------|
-| `stat-card-blue-pro-plain` | Solid blue background, value/label/description in white |
-| `stat-card-green-pro-plain` | Solid green |
-| `stat-card-rose-pro-plain` | Solid rose |
-| `stat-card-amber-pro-plain` | Solid amber |
-| `stat-card-violet-pro-plain` | Solid violet |
+| Class                        | Appearance                                              |
+| ---------------------------- | ------------------------------------------------------- |
+| `stat-card-blue-pro-plain`   | Solid blue background, value/label/description in white |
+| `stat-card-green-pro-plain`  | Solid green                                             |
+| `stat-card-rose-pro-plain`   | Solid rose                                              |
+| `stat-card-amber-pro-plain`  | Solid amber                                             |
+| `stat-card-violet-pro-plain` | Solid violet                                            |
 
 ## Appearance
 
@@ -210,32 +213,32 @@ The theme is shown below in both **light** and **dark** mode.
 
 ### Shop Dashboard
 
-| Light | Dark |
-|-------|------|
+| Light                                           | Dark                                           |
+| ----------------------------------------------- | ---------------------------------------------- |
 | ![Shop Dashboard (light)](screenshots/s1-l.png) | ![Shop Dashboard (dark)](screenshots/s1-d.png) |
 
 ### HR Dashboard
 
-| Light | Dark |
-|-------|------|
+| Light                                         | Dark                                         |
+| --------------------------------------------- | -------------------------------------------- |
 | ![HR Dashboard (light)](screenshots/s2-l.png) | ![HR Dashboard (dark)](screenshots/s2-d.png) |
 
 ### Stat UI View
 
-| Light | Dark |
-|-------|------|
+| Light                                         | Dark                                         |
+| --------------------------------------------- | -------------------------------------------- |
 | ![Stat UI View (light)](screenshots/s3-l.png) | ![Stat UI View (dark)](screenshots/s3-d.png) |
 
 ### Stat cards grid
 
-| Light | Dark |
-|-------|------|
+| Light                                       | Dark                                       |
+| ------------------------------------------- | ------------------------------------------ |
 | ![Stat cards (light)](screenshots/s4-l.png) | ![Stat cards (dark)](screenshots/s4-d.png) |
 
 ### Notifications and stat cards
 
-| Light | Dark |
-|-------|------|
+| Light                                                         | Dark                                                         |
+| ------------------------------------------------------------- | ------------------------------------------------------------ |
 | ![Notifications and stat cards (light)](screenshots/s5-l.png) | ![Notifications and stat cards (dark)](screenshots/s5-d.png) |
 
 ## License
