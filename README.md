@@ -2,7 +2,7 @@
 
 ![TokeUI – Filament Theme](screenshots/cover.png)
 
-A professional Filament theme with a blue sidebar and topbar, plus a rich set of stat card styles. Compatible with Filament 4 and 5. Full light and dark mode support.
+A professional Filament theme: blue sidebar and topbar, rich stat card styles, full light and dark mode. Compatible with Filament 4 and 5.
 
 ---
 
@@ -13,44 +13,48 @@ A professional Filament theme with a blue sidebar and topbar, plus a rich set of
 - [How to get the theme](#how-to-get-the-theme)
 - [Installation](#installation)
 - [Stat Overview — extraAttributes and classes](#stat-overview--extraattributes-and-classes)
-- [Screenshots / Appearance](#screenshots--appearance)
+- [Notifications and polish](#notifications-and-polish)
 - [License](#license)
 
 ---
 
 ## Features
 
-- **Professional blue sidebar and topbar** — Same look in light and dark mode.
-- **Stat card variants** — Colored, pro, bar, and pro plain; use via `extraAttributes` on Stats Overview widgets.
-- **Full light and dark mode support** — Consistent styling across themes.
-- **Install via Composer** — After purchase on AnyStack, install the package with Composer and register the plugin on your panel.
+- **Blue sidebar and topbar** — Same look in light and dark mode.
+- **Stat card variants** — Colored, pro, bar, and pro plain via `extraAttributes` on Stats Overview widgets.
+- **Light and dark mode** — Consistent styling in both themes.
+- **Composer install** — Purchase on AnyStack → license key → install package and register the plugin on your panel.
 
-## Requirements
+**Requirements:** PHP 8.2+, Filament 4 or 5, Laravel compatible with your Filament version.
 
-- PHP 8.2+
-- Filament 4 or 5
-- Laravel (version compatible with your Filament version)
+| Light                                           | Dark                                           |
+| ----------------------------------------------- | ---------------------------------------------- |
+| ![Shop Dashboard (light)](screenshots/s1-l.png) | ![Shop Dashboard (dark)](screenshots/s1-d.png) |
+
+---
 
 ## How to get the theme
 
 1. **[Purchase TokeUI Theme](https://checkout.anystack.sh/tokeui-theme?via=arf178)** — Complete payment on AnyStack.
-2. **Get your license key** — After purchase, AnyStack provides a license key (use the email associated with your purchase and this key as Composer credentials).
-3. **Install with Composer** — Follow the [Installation](#installation) steps below.
+2. **License key** — After purchase, use your account email and the provided license key as Composer credentials.
+3. **Install** — Follow the [Installation](#installation) steps below.
+
+---
 
 ## Installation
 
 ### 1. Add the Composer repository
 
-Add the AnyStack Composer repository to the `repositories` section of your `composer.json`. Use the repository URL shown on your [AnyStack product page](https://anystack.sh) (e.g. `https://....composer.sh`):
+In `composer.json`, add the AnyStack repository URL from your [AnyStack product page](https://anystack.sh) (e.g. `https://....composer.sh`) to the `repositories` section:
 
 ```json
 {
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://YOUR-ANISTACK-COMPOSER-URL"
-        }
-    ]
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://tokeui-filament-theme.composer.sh"
+    }
+  ]
 }
 ```
 
@@ -60,28 +64,31 @@ Add the AnyStack Composer repository to the `repositories` section of your `comp
 composer require tokeui/filament-tokeui-theme
 ```
 
-When prompted, use your **account email** and your **AnyStack license key** as the Composer credentials.
+When prompted, use your **account email** and **AnyStack license key** as Composer credentials.
 
 ### 3. Configure Vite
 
-Open **vite.config.js** and make two changes:
+In **vite.config.js**:
 
-**a) Add the alias** — The theme imports Filament’s base CSS. Add to `resolve.alias` (and `import path from 'path'` at the top if needed):
+**a) Alias** — The theme imports Filament’s base CSS. Add to `resolve.alias` (and `import path from 'path'` at the top if needed):
 
 ```js
-import path from 'path';
+import path from "path";
 
 export default defineConfig({
-    resolve: {
-        alias: {
-            'filament-base-theme': path.resolve(__dirname, 'vendor/filament/filament/resources/css/theme.css'),
-        },
+  resolve: {
+    alias: {
+      "filament-base-theme": path.resolve(
+        __dirname,
+        "vendor/filament/filament/resources/css/theme.css",
+      ),
     },
-    // ...
+  },
+  // ...
 });
 ```
 
-**b) Add the theme to the build** — In the Laravel Vite plugin `input` array, add the theme CSS from the vendor path:
+**b) Theme in build** — Add the theme CSS to the Laravel Vite plugin `input` array:
 
 ```js
 input: [
@@ -93,7 +100,7 @@ input: [
 
 ### 4. Register the plugin on your panel
 
-In your panel provider (e.g. `app/Providers/Filament/AdminPanelProvider.php`), register the TokeUI plugin and remove any existing `->viteTheme(...)` or other theme registration:
+In your panel provider (e.g. `app/Providers/Filament/AdminPanelProvider.php`), register the TokeUI plugin and remove any existing `->viteTheme(...)` or other theme:
 
 ```php
 use TokeUI\FilamentTokeUITheme\FilamentTokeUIThemePlugin;
@@ -106,7 +113,7 @@ public function panel(Panel $panel): Panel
 }
 ```
 
-The plugin registers the theme automatically via `vendor/tokeui/filament-tokeui-theme/resources/css/theme.css`.
+The plugin registers the theme via `vendor/tokeui/filament-tokeui-theme/resources/css/theme.css`.
 
 ### 5. Build
 
@@ -116,15 +123,17 @@ npm run build
 
 Use `npm run dev` during development. You’re all set.
 
+| Light                                         | Dark                                         |
+| --------------------------------------------- | -------------------------------------------- |
+| ![HR Dashboard (light)](screenshots/s2-l.png) | ![HR Dashboard (dark)](screenshots/s2-d.png) |
+
 ---
 
 ## Stat Overview — extraAttributes and classes
 
-Filament **Stats Overview** widgets support HTML attributes on each stat card via `->extraAttributes(['class' => '...'])`. TokeUI Theme provides predefined classes so you can style cards by type (e.g. success, warning, or a solid “pro” look).
+Filament **Stats Overview** widgets accept HTML attributes on each stat card via `->extraAttributes(['class' => '...'])`. TokeUI Theme provides predefined classes to style each card (e.g. success, warning, or a solid “pro” look).
 
-### Usage
-
-On each `Stat` in your widget, pass one class per card:
+**Usage:** one class per card on each `Stat`:
 
 ```php
 use Filament\Widgets\StatsOverviewWidget\Stat;
@@ -134,89 +143,69 @@ Stat::make('Revenue', '$12.5k')
     ->extraAttributes(['class' => 'stat-card-emerald']);
 ```
 
-Use a single class per card (e.g. `stat-card-rose`, `stat-card-blue-pro`, or `stat-card-blue-pro-plain`).
+Examples: `stat-card-rose`, `stat-card-blue-pro`, `stat-card-blue-pro-plain`.
 
-### Available classes
+### Colored variants (gradient value, colored label)
 
-#### Colored variants (gradient value, colored label)
+| Class               | Appearance                                     |
+| ------------------- | ---------------------------------------------- |
+| `stat-card-violet`  | Pastel violet background, violet bar and value |
+| `stat-card-emerald` | Green (success)                                |
+| `stat-card-rose`    | Rose / danger                                  |
+| `stat-card-amber`   | Amber / warning                                |
+| `stat-card-sky`     | Sky blue / info                                |
+| `stat-card-fuchsia` | Fuchsia                                        |
+| `stat-card-teal`    | Teal                                           |
+| `stat-card-orange`  | Orange                                         |
+| `stat-card-indigo`  | Indigo                                         |
+| `stat-card-slate`   | Neutral grey/slate                             |
 
-| Class | Appearance |
-|-------|------------|
-| `stat-card-violet` | Pastel violet background, violet bar and value |
-| `stat-card-emerald` | Green (success) |
-| `stat-card-rose` | Rose / danger |
-| `stat-card-amber` | Amber / warning |
-| `stat-card-sky` | Sky blue / info |
-| `stat-card-fuchsia` | Fuchsia |
-| `stat-card-teal` | Teal |
-| `stat-card-orange` | Orange |
-| `stat-card-indigo` | Indigo |
-| `stat-card-slate` | Neutral grey/slate |
+### “Pro” variants (pastel background, neutral value/label, accent on bar and description)
 
-#### “Pro” variants (pastel background, neutral value/label, accent on bar and description)
+| Class                  | Appearance                             |
+| ---------------------- | -------------------------------------- |
+| `stat-card-blue-pro`   | Pastel blue, neutral text, blue accent |
+| `stat-card-green-pro`  | Pastel green                           |
+| `stat-card-rose-pro`   | Pastel rose                            |
+| `stat-card-amber-pro`  | Pastel amber                           |
+| `stat-card-violet-pro` | Pastel violet                          |
+| `stat-card-sky-pro`    | Pastel sky blue                        |
 
-| Class | Appearance |
-|-------|------------|
-| `stat-card-blue-pro` | Pastel blue, neutral text, blue accent |
-| `stat-card-green-pro` | Pastel green |
-| `stat-card-rose-pro` | Pastel rose |
-| `stat-card-amber-pro` | Pastel amber |
-| `stat-card-violet-pro` | Pastel violet |
-| `stat-card-sky-pro` | Pastel sky blue |
+### “Bar” variants (accent bar at bottom, white text in bar)
 
-#### “Bar” variants (accent bar at bottom, white text in bar)
+| Class                   | Appearance                                         |
+| ----------------------- | -------------------------------------------------- |
+| `stat-card-bar-orange`  | Orange value, orange bottom bar, white text in bar |
+| `stat-card-bar-rose`    | Rose                                               |
+| `stat-card-bar-emerald` | Emerald                                            |
+| `stat-card-bar-blue`    | Blue                                               |
 
-| Class | Appearance |
-|-------|------------|
-| `stat-card-bar-orange` | Orange value, orange bottom bar, white text in bar |
-| `stat-card-bar-rose` | Rose |
-| `stat-card-bar-emerald` | Emerald |
-| `stat-card-bar-blue` | Blue |
+### “Pro plain” variants (solid background, all text white)
 
-#### “Pro plain” variants (solid background, all text white)
+| Class                        | Appearance                                              |
+| ---------------------------- | ------------------------------------------------------- |
+| `stat-card-blue-pro-plain`   | Solid blue background, value/label/description in white |
+| `stat-card-green-pro-plain`  | Solid green                                             |
+| `stat-card-rose-pro-plain`   | Solid rose                                              |
+| `stat-card-amber-pro-plain`  | Solid amber                                             |
+| `stat-card-violet-pro-plain` | Solid violet                                            |
 
-| Class | Appearance |
-|-------|------------|
-| `stat-card-blue-pro-plain` | Solid blue background, value/label/description in white |
-| `stat-card-green-pro-plain` | Solid green |
-| `stat-card-rose-pro-plain` | Solid rose |
-| `stat-card-amber-pro-plain` | Solid amber |
-| `stat-card-violet-pro-plain` | Solid violet |
+| Light                                         | Dark                                         |
+| --------------------------------------------- | -------------------------------------------- |
+| ![Stat UI View (light)](screenshots/s3-l.png) | ![Stat UI View (dark)](screenshots/s3-d.png) |
+
+| Light                                       | Dark                                       |
+| ------------------------------------------- | ------------------------------------------ |
+| ![Stat cards (light)](screenshots/s4-l.png) | ![Stat cards (dark)](screenshots/s4-d.png) |
 
 ---
 
-## Screenshots / Appearance
+## Notifications and polish
 
-The theme is shown below in both **light** and **dark** mode. Screenshots are in the `screenshots/` directory.
+The theme styles notifications and the rest of the UI for a consistent look.
 
-### 1 — Shop Dashboard
-
-| Light | Dark |
-|-------|------|
-| ![Shop Dashboard (light)](screenshots/s1-l.png) | ![Shop Dashboard (dark)](screenshots/s1-d.png) |
-
-### 2 — HR Dashboard
-
-| Light | Dark |
-|-------|------|
-| ![HR Dashboard (light)](screenshots/s2-l.png) | ![HR Dashboard (dark)](screenshots/s2-d.png) |
-
-### 3 — Stat UI View (stat card showcase)
-
-| Light | Dark |
-|-------|------|
-| ![Stat UI View (light)](screenshots/s3-l.png) | ![Stat UI View (dark)](screenshots/s3-d.png) |
-
-### 4 — Stat cards grid (all theme classes)
-
-| Light | Dark |
-|-------|------|
-| ![Stat cards (light)](screenshots/s4-l.png) | ![Stat cards (dark)](screenshots/s4-d.png) |
-
-### 5 — Notifications and stat cards
-
-| Light | Dark |
-|-------|------|
+| Light                                                         | Dark                                                         |
+| ------------------------------------------------------------- | ------------------------------------------------------------ |
 | ![Notifications and stat cards (light)](screenshots/s5-l.png) | ![Notifications and stat cards (dark)](screenshots/s5-d.png) |
 
 ---
