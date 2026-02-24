@@ -23,7 +23,7 @@ A professional Filament theme with a blue sidebar and topbar, plus a rich set of
 - **Professional blue sidebar and topbar** — Same look in light and dark mode.
 - **Stat card variants** — Colored, pro, bar, and pro plain; use via `extraAttributes` on Stats Overview widgets.
 - **Full light and dark mode support** — Consistent styling across themes.
-- **Single theme file** — Copy into your project and wire with Vite + panel provider; no Composer package required after purchase.
+- **Install via Composer** — After purchase on AnyStack, install the package with Composer and register the plugin on your panel.
 
 ## Requirements
 
@@ -33,27 +33,36 @@ A professional Filament theme with a blue sidebar and topbar, plus a rich set of
 
 ## How to get the theme
 
-1. **[Purchase TokeUI Theme](https://tokeui.mychariow.shop/prd_j1pzus)** — Complete payment on the product page.
-2. **Check your email** — You will receive a **zip file** containing:
-   - `theme.css` — The theme file.
-   - `README.md` — Short installation guide (same steps as below).
-3. **Extract and install** — Follow the [Installation](#installation) steps.
+1. **[Purchase TokeUI Theme](https://checkout.anystack.sh/tokeui-theme?via=arf178)** — Complete payment on AnyStack.
+2. **Get your license key** — After purchase, AnyStack provides a license key (use the email associated with your purchase and this key as Composer credentials).
+3. **Install with Composer** — Follow the [Installation](#installation) steps below.
 
 ## Installation
 
-After you have the zip and extracted `theme.css`:
+### 1. Add the Composer repository
 
-### 1. Copy the theme file
+Add the AnyStack Composer repository to the `repositories` section of your `composer.json`. Use the repository URL shown on your [AnyStack product page](https://anystack.sh) (e.g. `https://....composer.sh`):
 
-Place **theme.css** in your Laravel project at:
-
+```json
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://YOUR-ANISTACK-COMPOSER-URL"
+        }
+    ]
+}
 ```
-resources/css/tokeui/theme.css
+
+### 2. Install the package
+
+```bash
+composer require tokeui/filament-tokeui-theme
 ```
 
-Create the `tokeui` folder under `resources/css/` if it does not exist.
+When prompted, use your **account email** and your **AnyStack license key** as the Composer credentials.
 
-### 2. Configure Vite
+### 3. Configure Vite
 
 Open **vite.config.js** and make two changes:
 
@@ -72,27 +81,34 @@ export default defineConfig({
 });
 ```
 
-**b) Add the theme to the build** — In the Laravel Vite plugin `input` array, add:
+**b) Add the theme to the build** — In the Laravel Vite plugin `input` array, add the theme CSS from the vendor path:
 
 ```js
 input: [
     'resources/css/app.css',
     'resources/js/app.js',
-    'resources/css/tokeui/theme.css',
+    'vendor/tokeui/filament-tokeui-theme/resources/css/theme.css',
 ],
 ```
 
-### 3. Register the theme on your panel
+### 4. Register the plugin on your panel
 
-In your panel provider (e.g. `app/Providers/Filament/AdminPanelProvider.php`), add:
+In your panel provider (e.g. `app/Providers/Filament/AdminPanelProvider.php`), register the TokeUI plugin and remove any existing `->viteTheme(...)` or other theme registration:
 
 ```php
-->viteTheme('resources/css/tokeui/theme.css')
+use TokeUI\FilamentTokeUITheme\FilamentTokeUIThemePlugin;
+
+public function panel(Panel $panel): Panel
+{
+    return $panel
+        // ...
+        ->plugin(FilamentTokeUIThemePlugin::make());
+}
 ```
 
-Remove any existing `->viteTheme(...)` or plugin that registered another theme.
+The plugin registers the theme automatically via `vendor/tokeui/filament-tokeui-theme/resources/css/theme.css`.
 
-### 4. Build
+### 5. Build
 
 ```bash
 npm run build
@@ -196,6 +212,12 @@ The theme is shown below in both **light** and **dark** mode. Screenshots are in
 | Light | Dark |
 |-------|------|
 | ![Stat cards (light)](screenshots/s4-l.png) | ![Stat cards (dark)](screenshots/s4-d.png) |
+
+### 5 — Notifications and stat cards
+
+| Light | Dark |
+|-------|------|
+| ![Notifications and stat cards (light)](screenshots/s5-l.png) | ![Notifications and stat cards (dark)](screenshots/s5-d.png) |
 
 ---
 
